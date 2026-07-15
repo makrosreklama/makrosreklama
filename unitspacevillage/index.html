@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit Space Village — Hotel &amp; Apartments, Nyanyi &amp; Nuanu, Bali</title>
+<meta name="description" content="Unit Space Village — where modern comfort living meets nature. Boutique apartments and village amenities in Nyanyi &amp; Nuanu, Bali, minutes from the black sand beach.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2314120f'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Georgia,serif' font-weight='700' fill='%234f3ff0' text-anchor='middle'%3EU%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+
+<div class="loader" aria-hidden="true">
+  <span class="loader__mark">Unit Space Village</span>
+</div>
+
+<div class="grain-overlay" aria-hidden="true"></div>
+
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a href="#hero" class="logo" data-magnetic>
+      <span class="logo__text">UNIT SPACE <b>VILLAGE</b></span>
+    </a>
+
+    <nav class="nav" data-nav>
+      <a href="#apartments" class="nav__link">Our Apartments</a>
+      <a href="#amenities" class="nav__link">Unit Space Amenities</a>
+      <a href="#reviews" class="nav__link">Reviews</a>
+      <a href="#faq" class="nav__link">FAQ</a>
+    </nav>
+
+    <a href="#contact" class="btn btn--accent btn--sm nav__cta" data-magnetic>Book Now</a>
+
+    <button class="burger" data-burger aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="mobile-nav" data-mobile-nav>
+    <a href="#apartments" class="mobile-nav__link">Our Apartments</a>
+    <a href="#amenities" class="mobile-nav__link">Unit Space Amenities</a>
+    <a href="#reviews" class="mobile-nav__link">Reviews</a>
+    <a href="#faq" class="mobile-nav__link">FAQ</a>
+    <a href="#contact" class="mobile-nav__link">Book Now</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__slides" data-hero-slides>
+      <div class="hero__slide is-active" style="background-image:url('assets/garden-twilight.jpg')"></div>
+      <div class="hero__slide" style="background-image:url('assets/pool-aerial.jpg')"></div>
+      <div class="hero__slide" style="background-image:url('assets/sauna-plunge.jpg')"></div>
+    </div>
+    <div class="hero__scrim" aria-hidden="true"></div>
+
+    <div class="container hero__inner">
+      <p class="eyebrow" data-reveal>
+        <span class="eyebrow__dot"></span>
+        Nyanyi &amp; Nuanu, Bali
+      </p>
+
+      <h1 class="hero__title">
+        <span class="line" data-split>Unit Space Village</span>
+        <span class="line" data-split>Hotel <em>&amp; Apartments</em></span>
+      </h1>
+
+      <p class="hero__subtitle" data-reveal>Where modern comfort living meets nature.</p>
+
+      <div class="hero__actions" data-reveal>
+        <a href="#contact" class="btn btn--accent" data-magnetic>
+          Book Now
+          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#apartments" class="btn btn--ghost" data-magnetic>See Apartments</a>
+      </div>
+    </div>
+
+    <div class="hero__dots" data-hero-dots aria-hidden="true">
+      <span class="is-active"></span><span></span><span></span>
+    </div>
+
+    <a href="#welcome" class="scroll-cue" aria-label="Scroll down">
+      <span>SCROLL</span>
+      <i></i>
+    </a>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>NYANYI &amp; NUANU&nbsp;</span><span>•</span><span>&nbsp;BLACK SAND BEACH&nbsp;</span><span>•</span>
+      <span>&nbsp;RICE FIELD VIEWS&nbsp;</span><span>•</span><span>&nbsp;PRIVATE POOLS&nbsp;</span><span>•</span>
+      <span>&nbsp;SAUNA &amp; COLD PLUNGE&nbsp;</span><span>•</span><span>&nbsp;24/7 CINEMA&nbsp;</span><span>•</span>
+      <span>NYANYI &amp; NUANU&nbsp;</span><span>•</span><span>&nbsp;BLACK SAND BEACH&nbsp;</span><span>•</span>
+      <span>&nbsp;RICE FIELD VIEWS&nbsp;</span><span>•</span><span>&nbsp;PRIVATE POOLS&nbsp;</span><span>•</span>
+      <span>&nbsp;SAUNA &amp; COLD PLUNGE&nbsp;</span><span>•</span><span>&nbsp;24/7 CINEMA&nbsp;</span><span>•</span>
+    </div>
+  </div>
+
+  <!-- WELCOME -->
+  <section class="section welcome" id="welcome">
+    <div class="container welcome__grid">
+      <div class="welcome__media" data-reveal>
+        <img src="assets/daybed-deck.jpg" alt="Private deck and daybed at Unit Space Village" loading="lazy">
+      </div>
+      <div class="welcome__content">
+        <p class="section__label" data-reveal><span class="section__num">01</span> Welcome</p>
+        <h2 class="section__title" data-reveal>Welcome to <em>Unit Space Village</em></h2>
+        <p class="welcome__text" data-reveal>
+          Nestled in the peaceful landscapes of Nyanyi and Nuanu, Unit Space Village perfectly
+          balances modern comforts with serene natural beauty. Just 3 minutes from the black sand
+          beach and Nuanu City — Bali's vibrant creative hub — every detail has been carefully
+          curated to ensure a seamless, enjoyable stay.
+        </p>
+        <p class="welcome__text" data-reveal>
+          Escape to the tropical allure while staying just moments away from Bali's most vibrant
+          spots — Nuanu and Canggu.
+        </p>
+        <a href="#contact" class="btn btn--accent btn--block" data-magnetic>Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTAL: welcome -> apartments -->
+  <div class="portal" data-portal data-portal-color="#efeae0" aria-hidden="true">
+    <div class="portal__stage"><div class="portal__circle" data-portal-circle></div></div>
+  </div>
+
+  <!-- APARTMENTS -->
+  <section class="section apartments" id="apartments">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__label" data-reveal><span class="section__num">02</span> Stay</p>
+        <h2 class="section__title" data-reveal>Our Apartments</h2>
+      </div>
+
+      <div class="apartments-grid">
+
+        <article class="apt-card" data-tilt>
+          <div class="apt-card__media">
+            <img src="assets/apt-terrace.jpg" alt="1 Bedroom Apartment with Terrace" loading="lazy">
+          </div>
+          <h3>1 Bedroom Apartment with Terrace</h3>
+          <p>Stylish 1 bedroom apartment with terrace and all Unit Space amenities.</p>
+          <div class="apt-card__actions">
+            <a href="#contact" class="btn btn--accent btn--sm" data-magnetic>Book Now</a>
+            <a href="#contact" class="link-more">More</a>
+          </div>
+        </article>
+
+        <article class="apt-card" data-tilt>
+          <div class="apt-card__media">
+            <img src="assets/apt-spa-bath.jpg" alt="1 Bedroom Apartment with Spa Bath" loading="lazy">
+          </div>
+          <h3>1 Bedroom Apartment with Spa Bath</h3>
+          <p>1 bedroom apartment with private patio and a tropical bath.</p>
+          <div class="apt-card__actions">
+            <a href="#contact" class="btn btn--accent btn--sm" data-magnetic>Book Now</a>
+            <a href="#contact" class="link-more">More</a>
+          </div>
+        </article>
+
+        <article class="apt-card" data-tilt>
+          <div class="apt-card__media">
+            <img src="assets/apt-sunset-view.jpg" alt="1 Bedroom Apartment with Sunset View" loading="lazy">
+          </div>
+          <h3>1 Bedroom Apartment with Sunset View</h3>
+          <p>1 bedroom apartment on the second floor with a sunset and rice field view.</p>
+          <div class="apt-card__actions">
+            <a href="#contact" class="btn btn--accent btn--sm" data-magnetic>Book Now</a>
+            <a href="#contact" class="link-more">More</a>
+          </div>
+        </article>
+
+        <article class="apt-card" data-tilt>
+          <div class="apt-card__media">
+            <img src="assets/apt-sunset-garden.jpg" alt="2 Bedroom Apartment with Sunset & Garden View" loading="lazy">
+          </div>
+          <h3>2 Bedroom Apartment with Sunset &amp; Garden View</h3>
+          <p>Spacious 2 bedroom apartment with large terrace, sunset and garden views.</p>
+          <div class="apt-card__actions">
+            <a href="#contact" class="btn btn--accent btn--sm" data-magnetic>Book Now</a>
+            <a href="#contact" class="link-more">More</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container stats__grid">
+      <div class="stat" data-reveal>
+        <span class="stat__num" data-counter data-target="3">0</span>
+        <p>minutes to the black sand beach</p>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat__num" data-counter data-target="4">0</span>
+        <p>apartment types to choose from</p>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat__num" data-counter data-target="15">0</span><span class="stat__suffix">%</span>
+        <p>lower price booking direct</p>
+      </div>
+      <div class="stat" data-reveal>
+        <span class="stat__num" data-counter data-target="24">0</span><span class="stat__suffix">/7</span>
+        <p>check-in &amp; cinema access</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section class="section" id="amenities">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__label" data-reveal><span class="section__num">03</span> Amenities</p>
+        <h2 class="section__title" data-reveal>Unit Space Amenities</h2>
+        <p class="section__intro" data-reveal>
+          Everything you might need for a perfect beach or activity-focused vacation, workation
+          retreat or even a team event. All our guests have free access to Unit Space Village
+          amenities.
+        </p>
+      </div>
+
+      <div class="amenities-grid">
+        <article class="amenity-card amenity-card--tall" data-tilt>
+          <img src="assets/pool-aerial.jpg" alt="Swimming pool" loading="lazy">
+          <div class="amenity-card__bar"><span>Swimming Pool</span><time>07:00 – 22:00</time></div>
+        </article>
+
+        <article class="amenity-card" data-tilt>
+          <img src="assets/unit-space-city.jpg" alt="Unit Space City community" loading="lazy">
+          <div class="amenity-card__bar"><span>Unit Space City</span><time>Nearby</time></div>
+        </article>
+
+        <article class="amenity-card" data-tilt>
+          <img src="assets/cinema.jpg" alt="Cinema room" loading="lazy">
+          <div class="amenity-card__bar"><span>Cinema</span><time>24/7</time><a href="#contact" class="amenity-card__cta">Book Now</a></div>
+        </article>
+
+        <article class="amenity-card amenity-card--icon" data-tilt>
+          <div class="amenity-card__icon">
+            <svg viewBox="0 0 24 24" width="34" height="34"><path d="M4 22V10l8-6 8 6v12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 22v-7h6v7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="amenity-card__bar amenity-card__bar--static"><span>Check-in</span><time>24/7</time></div>
+        </article>
+
+        <article class="amenity-card" data-tilt>
+          <img src="assets/cafe.jpg" alt="Cafe" loading="lazy">
+          <div class="amenity-card__bar"><span>Cafe</span><time>07:00 – 22:00</time></div>
+        </article>
+
+        <article class="amenity-card amenity-card--tall" data-tilt>
+          <img src="assets/sauna-plunge.jpg" alt="Sauna and cold plunge" loading="lazy">
+          <div class="amenity-card__bar"><span>Sauna &amp; Cold Plunge</span><time>07:00 – 22:00</time></div>
+        </article>
+      </div>
+
+      <div class="services-list">
+        <h3 data-reveal>Other services provided:</h3>
+        <ul class="services-list__grid" data-reveal>
+          <li>Room service</li>
+          <li>Breakfast served in-room <small>(for an additional fee)</small></li>
+          <li>Concierge services</li>
+          <li>Onsite parking</li>
+          <li>High-speed WiFi</li>
+          <li>Cleaning services</li>
+          <li>24-hour security</li>
+          <li>TV in each room</li>
+          <li>Black-out curtains</li>
+          <li>Light control system</li>
+          <li>Air conditioning system</li>
+          <li>Fully equipped kitchen</li>
+          <li>Spacious wardrobes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTAL: amenities -> price guarantee -->
+  <div class="portal" data-portal data-portal-color="#14120f" aria-hidden="true">
+    <div class="portal__stage"><div class="portal__circle" data-portal-circle></div></div>
+  </div>
+
+  <!-- LOWEST PRICE GUARANTEE -->
+  <section class="section price-guarantee">
+    <div class="container price-guarantee__grid">
+      <div class="price-guarantee__media" data-reveal>
+        <img src="assets/apt-terrace.jpg" alt="Unit Space Village apartment terrace" loading="lazy">
+      </div>
+      <div>
+        <p class="section__label" data-reveal><span class="section__num">04</span> Best Rate</p>
+        <h2 class="section__title" data-reveal>Lowest Price Guarantee</h2>
+        <p class="welcome__text" data-reveal>Save money and book with the Unit Space lowest-price guarantee.</p>
+        <p class="welcome__text" data-reveal>
+          The price on our website is 15% lower on average compared to other booking methods.
+          If you found the exact same room at a lower rate, let us know within 24 hours after your
+          booking is confirmed through our website and we'll reward you with an extra 10% reduction
+          on that rate. You can contact us at <a href="tel:+6281239851660" class="inline-link">+62 812-3985-1660</a>.
+        </p>
+
+        <h3 class="price-guarantee__subtitle" data-reveal>Why book directly with us?</h3>
+        <ul class="reason-list" data-reveal>
+          <li><strong>Lowest price</strong></li>
+          <li><strong>More options</strong><span>If you need any personalized arrangements or additional services, let us know</span></li>
+          <li><strong>Direct customer service</strong><span>Contact us directly for any help with your booking or additional needs</span></li>
+          <li><strong>The easiest way to make changes</strong></li>
+        </ul>
+
+        <a href="#contact" class="btn btn--accent btn--block" data-magnetic>Book Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section reviews" id="reviews">
+    <div class="container">
+      <div class="section__head">
+        <p class="section__label" data-reveal><span class="section__num">05</span> Guests</p>
+        <h2 class="section__title" data-reveal>Reviews</h2>
+      </div>
+
+      <div class="reviews-grid">
+        <article class="review-card" data-reveal>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>&ldquo;I had the best experience. The whole village is stunning with a cafe, co-working
+            space, sauna and even a cinema. The location is perfect, among the rice fields and near
+            the beach. The staff is incredibly attentive.&rdquo;</p>
+          <span class="review-card__name">Julie</span>
+        </article>
+
+        <article class="review-card" data-reveal>
+          <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p>&ldquo;Best hi-tech modern living in a futuristic ecosystem. It's like living on
+            another planet but on earth. Basically you can get all of the atmosphere you could
+            wish for.&rdquo;</p>
+          <span class="review-card__name">Monica</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section faq" id="faq">
+    <div class="container faq__grid">
+      <div>
+        <p class="section__label" data-reveal><span class="section__num">06</span> FAQ</p>
+        <h2 class="section__title" data-reveal>Frequently Asked<br>Questions</h2>
+        <p class="welcome__text" data-reveal>Example questions below — replace with your real policies before publishing.</p>
+      </div>
+
+      <div class="accordion" data-accordion>
+        <div class="accordion__item is-open">
+          <button class="accordion__trigger">
+            <span>What time is check-in?</span>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel"><p>Check-in is available 24/7, so you can arrive whenever your flight lands.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span>Do you price-match other booking sites?</span>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel"><p>Yes — our direct rates run about 15% below other channels, and we'll match and beat a lower rate found within 24 hours of booking.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span>Is parking available on site?</span>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel"><p>Yes, onsite parking is included for all guests, along with 24-hour security.</p></div>
+        </div>
+        <div class="accordion__item">
+          <button class="accordion__trigger">
+            <span>How far is the beach?</span>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="accordion__panel"><p>Unit Space Village is just 3 minutes from the black sand beach, and close to Nuanu City and Canggu.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="container cta-band__inner">
+      <h2 data-reveal>Ready for <em>your stay?</em></h2>
+      <a href="#contact" class="btn btn--dark" data-magnetic>
+        Book Now
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container contact__grid">
+      <div>
+        <p class="section__label" data-reveal><span class="section__num">07</span> Contact</p>
+        <h2 class="section__title" data-reveal>Book directly<br>with the village</h2>
+        <p class="welcome__text" data-reveal>Reach out by phone, email, or Instagram — our team replies fast and always has the best rate.</p>
+
+        <div class="contact-info" data-reveal>
+          <a href="tel:+6281239851660" class="contact-info__item">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>+62 812-3985-1660</span>
+          </a>
+          <a href="mailto:hello@unitspacevillage.com" class="contact-info__item">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M4 6l8 7 8-7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>hello@unitspacevillage.com</span>
+          </a>
+          <span class="contact-info__item contact-info__item--static">
+            <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 22s7-6.6 7-12a7 7 0 1 0-14 0c0 5.4 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+            <span>Jl. Pantai Nyanyi No.88, Beraban, Kec. Kediri, Kabupaten Tabanan, Bali 80351</span>
+          </span>
+        </div>
+      </div>
+
+      <form class="form" data-form novalidate>
+        <div class="form__row">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+          <span class="form__error" data-error-for="name"></span>
+        </div>
+        <div class="form__row">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required>
+          <span class="form__error" data-error-for="email"></span>
+        </div>
+        <div class="form__row">
+          <label for="unit">Apartment of interest</label>
+          <select id="unit" name="unit">
+            <option>1 Bedroom Apartment with Terrace</option>
+            <option>1 Bedroom Apartment with Spa Bath</option>
+            <option>1 Bedroom Apartment with Sunset View</option>
+            <option>2 Bedroom Apartment with Sunset &amp; Garden View</option>
+          </select>
+        </div>
+        <div class="form__row">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="3" placeholder="Dates, guests, requests..."></textarea>
+        </div>
+        <button type="submit" class="btn btn--accent form__submit" data-magnetic>
+          <span class="btn__label">Send enquiry</span>
+        </button>
+        <p class="form__note">Demo form — connect it to your booking inbox or PMS before going live.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <span class="logo__text">UNIT SPACE <b>VILLAGE</b></span>
+      <p>Jl. Pantai Nyanyi No.88, Beraban, Kec. Kediri, Kabupaten Tabanan, Bali 80351</p>
+      <a href="#" class="footer__directions">Get Directions</a>
+      <a href="tel:+6281239851660" class="footer__phone">+62 812-3985-1660</a>
+    </div>
+
+    <nav class="footer__nav">
+      <a href="#apartments">Our Apartments</a>
+      <a href="#amenities">Unit Space Amenities</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="footer__social">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M14 9h3V5h-3c-2.2 0-4 1.8-4 4v2H8v4h2v6h4v-6h3l1-4h-4V9c0-.6.4-1 1-1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="mailto:hello@unitspacevillage.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 4h16v16H4z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M4 6l8 7 8-7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>&copy; <span data-year></span> Unit Space Village. All rights reserved.</span>
+    <a href="#hero" class="footer__totop">To top ↑</a>
+    <a href="#" class="footer__privacy">Privacy policy</a>
+  </div>
+</footer>
+
+<script src="js/vendor/gsap.min.js"></script>
+<script src="js/vendor/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
