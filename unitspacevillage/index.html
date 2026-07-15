@@ -17,7 +17,7 @@
 <body>
 
 <div class="cursor-dot" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"><span class="cursor-ring__label" data-cursor-label></span></div>
 
 <div class="loader" aria-hidden="true">
   <span class="loader__mark">Unit Space Village</span>
@@ -56,45 +56,98 @@
 
 <main>
 
-  <!-- HERO -->
-  <section class="hero" id="hero">
-    <div class="hero__slides" data-hero-slides>
-      <div class="hero__slide is-active" style="background-image:url('assets/garden-twilight.jpg')"></div>
-      <div class="hero__slide" style="background-image:url('assets/pool-aerial.jpg')"></div>
-      <div class="hero__slide" style="background-image:url('assets/sauna-plunge.jpg')"></div>
-    </div>
-    <div class="hero__scrim" aria-hidden="true"></div>
+  <!-- CINEMATIC SCENES -->
+  <section class="scenes" id="hero" data-scenes>
+    <div class="scenes__stage">
 
-    <div class="container hero__inner">
-      <p class="eyebrow" data-reveal>
-        <span class="eyebrow__dot"></span>
-        Nyanyi &amp; Nuanu, Bali
-      </p>
-
-      <h1 class="hero__title">
-        <span class="line" data-split>Unit Space Village</span>
-        <span class="line" data-split>Hotel <em>&amp; Apartments</em></span>
-      </h1>
-
-      <p class="hero__subtitle" data-reveal>Where modern comfort living meets nature.</p>
-
-      <div class="hero__actions" data-reveal>
-        <a href="#contact" class="btn btn--accent" data-magnetic>
-          Book Now
-          <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
-        <a href="#apartments" class="btn btn--ghost" data-magnetic>See Apartments</a>
+      <div class="scenes__media">
+        <div class="scenes__img is-active" data-scene-img style="background-image:url('assets/garden-twilight.jpg')"></div>
+        <div class="scenes__img" data-scene-img style="background-image:url('assets/pool-aerial.jpg')"></div>
+        <div class="scenes__img" data-scene-img style="background-image:url('assets/sauna-plunge.jpg')"></div>
+        <div class="scenes__img" data-scene-img style="background-image:url('assets/cinema.jpg')"></div>
+        <div class="scenes__img" data-scene-img style="background-image:url('assets/apt-sunset-view.jpg')"></div>
+        <div class="scenes__img" data-scene-img style="background-image:url('assets/daybed-deck.jpg')"></div>
       </div>
-    </div>
+      <div class="scenes__scrim" aria-hidden="true"></div>
+      <div class="scenes__vignette" aria-hidden="true"></div>
 
-    <div class="hero__dots" data-hero-dots aria-hidden="true">
-      <span class="is-active"></span><span></span><span></span>
-    </div>
+      <div class="container scenes__chrome">
+        <div class="scenes__top">
+          <p class="eyebrow">
+            <span class="eyebrow__dot"></span>
+            Nyanyi &amp; Nuanu, Bali
+          </p>
+          <span class="scenes__counter"><span data-scene-current>01</span><i>/</i><span data-scene-total>06</span></span>
+        </div>
 
-    <a href="#welcome" class="scroll-cue" aria-label="Scroll down">
-      <span>SCROLL</span>
-      <i></i>
-    </a>
+        <div class="scenes__panels">
+          <div class="scenes__panel is-active" data-scene-panel>
+            <h1 class="scenes__title">Unit Space Village</h1>
+            <p class="scenes__subtitle">Where modern comfort living meets nature.</p>
+            <div class="scenes__actions">
+              <a href="#contact" class="btn btn--accent" data-magnetic>
+                Book Now
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#apartments" class="btn btn--ghost" data-magnetic>See Apartments</a>
+            </div>
+          </div>
+
+          <div class="scenes__panel" data-scene-panel>
+            <h2 class="scenes__title">A Pool Above the Rice Fields</h2>
+            <p class="scenes__subtitle">A private plunge pool framed by teak decking and palm shade.</p>
+            <div class="scenes__chips">
+              <span class="chip">Private Pool</span>
+              <span class="chip">07:00 – 22:00</span>
+            </div>
+          </div>
+
+          <div class="scenes__panel" data-scene-panel>
+            <h2 class="scenes__title">Sauna &amp; Cold Plunge</h2>
+            <p class="scenes__subtitle">Sweat, plunge, repeat — steps from your terrace.</p>
+            <div class="scenes__chips">
+              <span class="chip">Sauna &amp; Cold Plunge</span>
+              <span class="chip">07:00 – 22:00</span>
+            </div>
+          </div>
+
+          <div class="scenes__panel" data-scene-panel>
+            <h2 class="scenes__title">Your Own Cinema</h2>
+            <p class="scenes__subtitle">A private screening room, open around the clock.</p>
+            <div class="scenes__chips">
+              <span class="chip">Cinema</span>
+              <span class="chip">24/7 Access</span>
+            </div>
+          </div>
+
+          <div class="scenes__panel" data-scene-panel>
+            <h2 class="scenes__title">Apartments With a View</h2>
+            <p class="scenes__subtitle">Rice fields, sunsets, and gardens from your terrace.</p>
+            <div class="scenes__chips">
+              <span class="chip">4 Layouts</span>
+              <span class="chip">1 &amp; 2 Bedroom</span>
+            </div>
+          </div>
+
+          <div class="scenes__panel" data-scene-panel>
+            <h2 class="scenes__title">Ready When You Are</h2>
+            <p class="scenes__subtitle">3 minutes from the black sand beach. Book direct for the best rate.</p>
+            <div class="scenes__actions">
+              <a href="#contact" class="btn btn--accent" data-magnetic>
+                Book Now
+                <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="scenes__hint" data-scenes-hint>
+          <span>Scroll to explore</span>
+          <i></i>
+        </div>
+      </div>
+
+    </div>
   </section>
 
   <!-- MARQUEE -->
@@ -112,7 +165,7 @@
   <!-- WELCOME -->
   <section class="section welcome" id="welcome">
     <div class="container welcome__grid">
-      <div class="welcome__media" data-reveal>
+      <div class="welcome__media" data-reveal-media>
         <img src="assets/daybed-deck.jpg" alt="Private deck and daybed at Unit Space Village" loading="lazy">
       </div>
       <div class="welcome__content">
@@ -148,7 +201,7 @@
 
       <div class="apartments-grid">
 
-        <article class="apt-card" data-tilt>
+        <article class="apt-card" data-tilt data-cursor="View">
           <div class="apt-card__media">
             <img src="assets/apt-terrace.jpg" alt="1 Bedroom Apartment with Terrace" loading="lazy">
           </div>
@@ -160,7 +213,7 @@
           </div>
         </article>
 
-        <article class="apt-card" data-tilt>
+        <article class="apt-card" data-tilt data-cursor="View">
           <div class="apt-card__media">
             <img src="assets/apt-spa-bath.jpg" alt="1 Bedroom Apartment with Spa Bath" loading="lazy">
           </div>
@@ -172,7 +225,7 @@
           </div>
         </article>
 
-        <article class="apt-card" data-tilt>
+        <article class="apt-card" data-tilt data-cursor="View">
           <div class="apt-card__media">
             <img src="assets/apt-sunset-view.jpg" alt="1 Bedroom Apartment with Sunset View" loading="lazy">
           </div>
@@ -184,7 +237,7 @@
           </div>
         </article>
 
-        <article class="apt-card" data-tilt>
+        <article class="apt-card" data-tilt data-cursor="View">
           <div class="apt-card__media">
             <img src="assets/apt-sunset-garden.jpg" alt="2 Bedroom Apartment with Sunset & Garden View" loading="lazy">
           </div>
@@ -236,17 +289,17 @@
       </div>
 
       <div class="amenities-grid">
-        <article class="amenity-card amenity-card--tall" data-tilt>
+        <article class="amenity-card amenity-card--tall" data-tilt data-cursor="View">
           <img src="assets/pool-aerial.jpg" alt="Swimming pool" loading="lazy">
           <div class="amenity-card__bar"><span>Swimming Pool</span><time>07:00 – 22:00</time></div>
         </article>
 
-        <article class="amenity-card" data-tilt>
+        <article class="amenity-card" data-tilt data-cursor="View">
           <img src="assets/unit-space-city.jpg" alt="Unit Space City community" loading="lazy">
           <div class="amenity-card__bar"><span>Unit Space City</span><time>Nearby</time></div>
         </article>
 
-        <article class="amenity-card" data-tilt>
+        <article class="amenity-card" data-tilt data-cursor="View">
           <img src="assets/cinema.jpg" alt="Cinema room" loading="lazy">
           <div class="amenity-card__bar"><span>Cinema</span><time>24/7</time><a href="#contact" class="amenity-card__cta">Book Now</a></div>
         </article>
@@ -258,12 +311,12 @@
           <div class="amenity-card__bar amenity-card__bar--static"><span>Check-in</span><time>24/7</time></div>
         </article>
 
-        <article class="amenity-card" data-tilt>
+        <article class="amenity-card" data-tilt data-cursor="View">
           <img src="assets/cafe.jpg" alt="Cafe" loading="lazy">
           <div class="amenity-card__bar"><span>Cafe</span><time>07:00 – 22:00</time></div>
         </article>
 
-        <article class="amenity-card amenity-card--tall" data-tilt>
+        <article class="amenity-card amenity-card--tall" data-tilt data-cursor="View">
           <img src="assets/sauna-plunge.jpg" alt="Sauna and cold plunge" loading="lazy">
           <div class="amenity-card__bar"><span>Sauna &amp; Cold Plunge</span><time>07:00 – 22:00</time></div>
         </article>
@@ -298,7 +351,7 @@
   <!-- LOWEST PRICE GUARANTEE -->
   <section class="section price-guarantee">
     <div class="container price-guarantee__grid">
-      <div class="price-guarantee__media" data-reveal>
+      <div class="price-guarantee__media" data-reveal-media>
         <img src="assets/apt-terrace.jpg" alt="Unit Space Village apartment terrace" loading="lazy">
       </div>
       <div>

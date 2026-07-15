@@ -8,6 +8,7 @@
 
   if (hasGSAP && window.ScrollTrigger) {
     gsap.registerPlugin(ScrollTrigger);
+    window.addEventListener('load', () => ScrollTrigger.refresh());
   }
 
   /* --------------------------------------------------------------------
@@ -37,6 +38,7 @@
   if (isFinePointer && hasGSAP) {
     const dot = doc.querySelector('.cursor-dot');
     const ring = doc.querySelector('.cursor-ring');
+    const cursorLabel = doc.querySelector('[data-cursor-label]');
     if (dot && ring) {
       const dotX = gsap.quickTo(dot, 'x', { duration: 0.12, ease: 'power2.out' });
       const dotY = gsap.quickTo(dot, 'y', { duration: 0.12, ease: 'power2.out' });
@@ -45,9 +47,22 @@
       window.addEventListener('mousemove', (e) => {
         dotX(e.clientX); dotY(e.clientY); ringX(e.clientX); ringY(e.clientY);
       });
+
       doc.querySelectorAll('a, button, [data-tilt], input, textarea, select').forEach((el) => {
+        if (el.hasAttribute('data-cursor')) return; // handled separately below
         el.addEventListener('mouseenter', () => ring.classList.add('is-active'));
         el.addEventListener('mouseleave', () => ring.classList.remove('is-active'));
+      });
+
+      // Cards that show a text label ("View") inside the cursor ring on hover
+      doc.querySelectorAll('[data-cursor]').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          if (cursorLabel) cursorLabel.textContent = el.getAttribute('data-cursor');
+          ring.classList.add('has-label');
+        });
+        el.addEventListener('mouseleave', () => {
+          ring.classList.remove('has-label');
+        });
       });
     }
   }
@@ -125,54 +140,77 @@
   }
 
   /* --------------------------------------------------------------------
-   * Hero headline reveal (manual word-split)
+   * Opening scene entrance (title/subtitle/actions fade+rise on load)
    * ------------------------------------------------------------------ */
-  doc.querySelectorAll('[data-split]').forEach((line) => {
-    const words = line.textContent.trim().split(/\s+/);
-    line.innerHTML = words
-      .map((w) => `<span class="word" style="display:inline-block;overflow:hidden;vertical-align:top;"><span class="word__inner" style="display:inline-block;">${w}&nbsp;</span></span>`)
-      .join('');
-  });
-
   if (hasGSAP) {
-    const wordInners = doc.querySelectorAll('.hero__title .word__inner');
-    if (reduceMotion) {
-      gsap.set(wordInners, { y: 0, opacity: 1 });
-    } else {
-      gsap.set(wordInners, { yPercent: 110, opacity: 0 });
-      gsap.to(wordInners, { yPercent: 0, opacity: 1, duration: 0.9, ease: 'expo.out', stagger: 0.05, delay: 0.5 });
-    }
-    gsap.from('.hero__subtitle, .hero__actions, .eyebrow', {
-      opacity: 0, y: reduceMotion ? 0 : 16, duration: 0.7, ease: 'power2.out', stagger: 0.1, delay: reduceMotion ? 0 : 0.9,
+    gsap.from('.scenes__panel.is-active .scenes__title', {
+      opacity: 0, y: reduceMotion ? 0 : 28, duration: 0.9, ease: 'expo.out', delay: reduceMotion ? 0 : 0.5,
+    });
+    gsap.from('.scenes__panel.is-active .scenes__subtitle, .scenes__panel.is-active .scenes__actions, .scenes__top', {
+      opacity: 0, y: reduceMotion ? 0 : 16, duration: 0.7, ease: 'power2.out', stagger: 0.1, delay: reduceMotion ? 0 : 0.85,
     });
   }
 
   /* --------------------------------------------------------------------
-   * Hero cinematic slideshow (crossfade + Ken Burns)
+   * Cinematic scroll-pinned scene sequence
+   * (crossfading photography + Ken Burns + synced captions + counter,
+   *  driven entirely by scroll position — not a timer)
    * ------------------------------------------------------------------ */
-  const heroSlides = doc.querySelectorAll('[data-hero-slides] .hero__slide');
-  const heroDots = doc.querySelectorAll('[data-hero-dots] span');
-  if (heroSlides.length > 1) {
-    let current = 0;
-    const kenBurns = (slide) => {
-      if (!hasGSAP || reduceMotion) return;
-      gsap.fromTo(slide, { scale: 1.08 }, { scale: 1, duration: 7, ease: 'none' });
-    };
-    kenBurns(heroSlides[0]);
-    setInterval(() => {
-      const next = (current + 1) % heroSlides.length;
-      if (hasGSAP && !reduceMotion) {
-        gsap.to(heroSlides[current], { opacity: 0, duration: 1.2, ease: 'power2.inOut' });
-        gsap.set(heroSlides[next], { scale: 1.08 });
-        gsap.to(heroSlides[next], { opacity: 1, duration: 1.2, ease: 'power2.inOut' });
-        kenBurns(heroSlides[next]);
-      } else {
-        heroSlides[current].classList.remove('is-active');
-        heroSlides[next].classList.add('is-active');
-      }
-      heroDots.forEach((d, i) => d.classList.toggle('is-active', i === next));
-      current = next;
-    }, 6000);
+  const scenesSection = doc.querySelector('[data-scenes]');
+  if (scenesSection) {
+    const images = Array.from(scenesSection.querySelectorAll('[data-scene-img]'));
+    const panels = Array.from(scenesSection.querySelectorAll('[data-scene-panel]'));
+    const counterCurrent = scenesSection.querySelector('[data-scene-current]');
+    const counterTotal = scenesSection.querySelector('[data-scene-total]');
+    const hint = scenesSection.querySelector('[data-scenes-hint]');
+    const n = images.length;
+    if (counterTotal) counterTotal.textContent = String(n).padStart(2, '0');
+
+    if (hasGSAP && window.ScrollTrigger && !reduceMotion && n > 1) {
+      const perScene = 90; // vh-equivalent scroll distance per scene
+      let activeIndex = 0;
+      let hintHidden = false;
+
+      const st = {
+        trigger: scenesSection,
+        start: 'top top',
+        end: () => '+=' + n * perScene + '%',
+        scrub: 0.5,
+        pin: true,
+        anticipatePin: 1,
+        onUpdate: (self) => {
+          if (!hintHidden && self.progress > 0.02 && hint) {
+            hintHidden = true;
+            gsap.to(hint, { opacity: 0, duration: 0.4 });
+          }
+          const idx = Math.min(n - 1, Math.floor(self.progress * n));
+          if (idx !== activeIndex) {
+            images[activeIndex].classList.remove('is-active');
+            images[idx].classList.add('is-active');
+            panels[activeIndex].classList.remove('is-active');
+            panels[idx].classList.add('is-active');
+            if (counterCurrent) counterCurrent.textContent = String(idx + 1).padStart(2, '0');
+            activeIndex = idx;
+          }
+        },
+      };
+
+      const tl = gsap.timeline({ scrollTrigger: st });
+
+      images.forEach((img, i) => {
+        // Continuous slow push-in for the entire window this image is on screen
+        tl.fromTo(img, { scale: 1.14 }, { scale: 1, ease: 'none', duration: 1 }, i);
+        if (i > 0) {
+          tl.to(images[i - 1], { opacity: 0, duration: 0.28, ease: 'power1.inOut' }, i - 0.14);
+          tl.fromTo(images[i], { opacity: 0 }, { opacity: 1, duration: 0.28, ease: 'power1.inOut' }, i - 0.14);
+          tl.to(panels[i - 1], { opacity: 0, y: -18, duration: 0.22, ease: 'power1.in' }, i - 0.16);
+          tl.fromTo(panels[i], { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' }, i - 0.02);
+        }
+      });
+    } else {
+      // Reduced motion / no GSAP: reveal each panel+image as it scrolls into view
+      images.forEach((img) => img.classList.add('is-active'));
+    }
   }
 
   /* --------------------------------------------------------------------
@@ -181,33 +219,72 @@
   if (hasGSAP && window.ScrollTrigger && !reduceMotion) {
     doc.querySelectorAll('[data-reveal]').forEach((el) => {
       gsap.from(el, {
-        opacity: 0, y: 24, duration: 0.6, ease: 'power2.out',
+        opacity: 0, y: 28, duration: 0.7, ease: 'expo.out',
         scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none reverse' },
       });
     });
 
     gsap.utils.toArray('.apt-card').forEach((card, i) => {
       gsap.from(card, {
-        opacity: 0, y: 30, duration: 0.6, ease: 'power2.out', delay: (i % 4) * 0.08,
+        opacity: 0, y: 46, rotate: i % 2 === 0 ? -1.5 : 1.5, duration: 0.8, ease: 'expo.out', delay: (i % 4) * 0.09,
         scrollTrigger: { trigger: card, start: 'top 90%', toggleActions: 'play none none reverse' },
       });
     });
 
     gsap.utils.toArray('.amenity-card').forEach((card, i) => {
       gsap.from(card, {
-        opacity: 0, scale: 0.94, duration: 0.5, ease: 'power2.out', delay: (i % 3) * 0.08,
+        opacity: 0, scale: 0.9, y: 20, duration: 0.65, ease: 'expo.out', delay: (i % 3) * 0.08,
         scrollTrigger: { trigger: card, start: 'top 92%', toggleActions: 'play none none reverse' },
       });
+    });
+
+    // Cinematic clip-path reveal for large section photography (welcome, price guarantee)
+    doc.querySelectorAll('[data-reveal-media]').forEach((wrap) => {
+      const img = wrap.querySelector('img');
+      gsap.fromTo(
+        wrap,
+        { clipPath: 'inset(0 0 100% 0)' },
+        {
+          clipPath: 'inset(0 0 0% 0)', duration: 1.1, ease: 'expo.inOut',
+          scrollTrigger: { trigger: wrap, start: 'top 85%', toggleActions: 'play none none reverse' },
+        }
+      );
+      if (img) {
+        gsap.fromTo(img, { scale: 1.25, y: -20 }, {
+          scale: 1, y: 0, duration: 1.3, ease: 'expo.out',
+          scrollTrigger: { trigger: wrap, start: 'top 85%', toggleActions: 'play none none reverse' },
+        });
+        // Subtle continuous parallax while the image scrolls through the viewport
+        gsap.to(img, {
+          yPercent: 8, ease: 'none',
+          scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'bottom top', scrub: 0.6 },
+        });
+      }
     });
   }
 
   /* --------------------------------------------------------------------
-   * Marquee (GSAP-driven, seamless loop)
+   * Marquee — seamless loop that speeds up with scroll velocity
    * ------------------------------------------------------------------ */
   const marqueeTrack = doc.querySelector('.marquee__track');
   if (marqueeTrack && hasGSAP && !reduceMotion) {
     const width = marqueeTrack.scrollWidth / 2;
-    gsap.to(marqueeTrack, { x: -width, duration: width / 55, ease: 'none', repeat: -1 });
+    const baseDuration = width / 55;
+    const marqueeTween = gsap.to(marqueeTrack, { x: -width, duration: baseDuration, ease: 'none', repeat: -1 });
+
+    if (window.ScrollTrigger) {
+      ScrollTrigger.create({
+        trigger: marqueeTrack,
+        start: 'top bottom',
+        end: 'bottom top',
+        onUpdate: (self) => {
+          const boost = 1 + Math.min(3, Math.abs(self.getVelocity()) / 1200);
+          gsap.to(marqueeTween, { timeScale: boost, duration: 0.3, overwrite: true });
+        },
+        onLeave: () => gsap.to(marqueeTween, { timeScale: 1, duration: 0.6 }),
+        onLeaveBack: () => gsap.to(marqueeTween, { timeScale: 1, duration: 0.6 }),
+      });
+    }
   }
 
   /* --------------------------------------------------------------------
