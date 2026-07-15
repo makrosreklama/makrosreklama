@@ -192,6 +192,89 @@
   }
 
   /* --------------------------------------------------------------------
+   * Hero exit transform — content shrinks/fades as you dive into the tunnel
+   * ------------------------------------------------------------------ */
+  if (hasGSAP && window.ScrollTrigger && !reduceMotion) {
+    gsap.to('.hero__inner', {
+      opacity: 0,
+      y: -80,
+      scale: 0.9,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.hero',
+        start: 'bottom 95%',
+        end: 'bottom 30%',
+        scrub: true,
+      },
+    });
+  }
+
+  /* --------------------------------------------------------------------
+   * Tunnel — pinned corridor flythrough of service panels
+   * ------------------------------------------------------------------ */
+  const tunnel = doc.querySelector('[data-tunnel]');
+  if (tunnel && hasGSAP && window.ScrollTrigger && !reduceMotion) {
+    const panels = gsap.utils.toArray('[data-tunnel-panel]', tunnel);
+    const distancePerPanel = 100; // vh-equivalent % of scroll per panel
+
+    const tunnelTrigger = {
+      trigger: tunnel,
+      start: 'top top',
+      end: () => '+=' + panels.length * distancePerPanel + '%',
+      scrub: 1,
+      pin: true,
+      anticipatePin: 1,
+    };
+
+    const tl = gsap.timeline({ scrollTrigger: tunnelTrigger });
+
+    panels.forEach((panel, i) => {
+      const dir = i % 2 === 0 ? -1 : 1;
+      tl.fromTo(
+        panel,
+        { scale: 0.15, opacity: 0, rotate: dir * 6 },
+        { scale: 1, opacity: 1, rotate: 0, duration: 0.6, ease: 'power1.out' },
+        i
+      ).to(
+        panel,
+        { scale: 3.6, opacity: 0, duration: 0.45, ease: 'power1.in' },
+        i + 0.55
+      );
+    });
+
+    gsap.to('.tunnel__speedlines', {
+      rotate: 45,
+      ease: 'none',
+      scrollTrigger: { ...tunnelTrigger, scrub: 1, pin: false },
+    });
+  }
+
+  /* --------------------------------------------------------------------
+   * Portal transitions — expanding circle "space change" wipe between
+   * sections; the circle crossfades to the next section's own background
+   * so the pin-free wipe reads as stepping through into a new space.
+   * ------------------------------------------------------------------ */
+  if (hasGSAP && window.ScrollTrigger && !reduceMotion) {
+    doc.querySelectorAll('[data-portal]').forEach((portal) => {
+      const circle = portal.querySelector('[data-portal-circle]');
+      if (!circle) return;
+      const toColor = portal.getAttribute('data-portal-color') || '#101014';
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: portal,
+            start: 'top top',
+            end: 'bottom bottom',
+            scrub: 0.6,
+          },
+        })
+        .fromTo(circle, { scale: 0.2, opacity: 0.85 }, { scale: 70, opacity: 1, ease: 'power1.inOut', duration: 1 }, 0)
+        .to(circle, { backgroundColor: toColor, duration: 0.45 }, 0.6);
+    });
+  }
+
+  /* --------------------------------------------------------------------
    * Scroll reveals
    * ------------------------------------------------------------------ */
   if (hasGSAP && window.ScrollTrigger && !reduceMotion) {

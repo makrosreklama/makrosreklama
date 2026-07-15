@@ -363,6 +363,102 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* ==========================================================================
+   Tunnel (corridor flythrough)
+   ========================================================================== */
+.tunnel{
+  position: relative;
+  height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+}
+.tunnel__stage{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.tunnel__speedlines{
+  position: absolute; inset: -20%;
+  background-image: repeating-conic-gradient(
+    from 0deg,
+    rgba(255,255,255,0.05) 0deg 1.2deg,
+    transparent 1.2deg 12deg
+  );
+  mask-image: radial-gradient(circle at 50% 50%, black 0%, transparent 65%);
+  opacity: 0.6;
+}
+.tunnel__panels{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.tunnel__panel{
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: min(58vw, 560px);
+  aspect-ratio: 16 / 9;
+  border-radius: 22px;
+  border: 2px solid var(--tp-color, var(--accent));
+  background: rgba(255,255,255,0.02);
+  box-shadow: 0 0 60px -12px var(--tp-color, var(--accent)), inset 0 0 40px -18px var(--tp-color, var(--accent));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  transform: scale(0.15);
+  will-change: transform, opacity;
+}
+.tunnel__panel-num{
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: var(--tp-color, var(--accent));
+}
+.tunnel__panel h3{
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  color: var(--text);
+}
+.tunnel__hint{
+  position: absolute;
+  left: 50%; bottom: 40px;
+  transform: translateX(-50%);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Portal transition (space-change wipe)
+   ========================================================================== */
+.portal{
+  position: relative;
+  height: 160vh;
+}
+.portal__stage{
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.portal__circle{
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--accent);
+  will-change: transform, background-color;
+}
+
+/* ==========================================================================
    Marquee
    ========================================================================== */
 .marquee{
@@ -777,4 +873,28 @@ a.contact-info__item:hover{ color: var(--accent); }
   .scroll-cue i::after{ animation: none; }
   .marquee__track{ animation: none !important; }
   *{ transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+
+  /* Tunnel becomes a static grid instead of a scroll-jacked flythrough */
+  .tunnel{ height: auto; padding-block: 80px; }
+  .tunnel__stage{ position: static; height: auto; display: block; }
+  .tunnel__speedlines{ display: none; }
+  .tunnel__panels{
+    position: static;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .tunnel__panel{
+    position: static;
+    width: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    padding-block: 32px;
+  }
+  .tunnel__hint{ display: none; }
+
+  /* Portal becomes a plain divider instead of a scroll-driven wipe */
+  .portal{ height: 4px; }
+  .portal__stage{ position: static; height: 100%; }
+  .portal__circle{ width: 100%; height: 100%; border-radius: 0; transform: none !important; }
 }
